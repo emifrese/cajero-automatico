@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../UI/Button";
 
-const NumberPanel = ({ valueHandler, validInputs }) => {
+const NumberPanel = ({ valueHandler, validInputs, loginHandler }) => {
   let displayButtons = [];
 
   for (let i = 1; i < 13; i++) {
@@ -14,6 +14,7 @@ const NumberPanel = ({ valueHandler, validInputs }) => {
       let value = i;
       let click = valueHandler;
       let disabled = false;
+      let disabledClass = "";
       switch (i) {
         case 10:
           text = "Borrar";
@@ -25,9 +26,10 @@ const NumberPanel = ({ valueHandler, validInputs }) => {
           break;
         case 12:
           text = "Continuar";
-          click = () => {};
+          click = loginHandler;
           if (!validInputs[0] || !validInputs[1]) {
             disabled = true;
+            disabledClass = "bg-slate-400 hover:bg-slate-400"
           }
           break;
       }
@@ -38,12 +40,13 @@ const NumberPanel = ({ valueHandler, validInputs }) => {
           value={value}
           valueHandler={click}
           disabled={disabled}
+          disabledClass={disabledClass}
         />
       );
     }
   }
 
-  return <div className="flex flex-wrap w-5/12 border-2">{displayButtons}</div>;
+  return <div className="flex flex-wrap w-5/12 border-2 h-80 gap-4 justify-center py-4">{displayButtons}</div>;
 };
 
 export default NumberPanel;
