@@ -1,0 +1,29 @@
+{
+  "bank-name": "la-plata",
+  "accounts": [
+    {
+      "nombre": "Emiliano",
+      "dni": "37359265",
+      "clave": "1234",
+      "info": {
+        "amount": 1000
+      }
+    },
+    {
+      "nombre": "Hugo",
+      "dni": "18549411",
+      "clave": "1111",
+      "info": {
+        "amount": 1500
+      }
+    },
+    {
+      "nombre": "Jorge",
+      "dni": "12345678",
+      "clave": "5555",
+      "info": {
+        "amount": 9999
+      }
+    }
+  ]
+}

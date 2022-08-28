@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import LoginPanel from "../components/Panel/LoginPanel";
 import NumberPanel from "../components/Panel/NumberPanel";
-import MainScreenWrapper from "../components/UI/MainScreenWrapper";
+import { checkClient } from "../helpers/checkClient";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [inputFocus, setInputFocus] = useState();
   const [validInputs, setValidInputs] = useState([false, false]);
+  const {setAuth} = useAuth();
+
+  const navigate = useNavigate()
 
   const dniRef = useRef("");
   const claveRef = useRef("");
@@ -23,8 +27,11 @@ const Login = () => {
     };
   }, [dniRef.current.value, claveRef.current.value, inputFocus]);
 
-  const loginHandler = () => {
-    console.log([`DNI: ${dniRef.current.value}`, `Clave: ${claveRef.current.value}`])
+  const loginHandler =  async () => {
+    const [account] = await checkClient(dniRef.current.value, claveRef.current.value)
+    
+    setAuth(account);
+    navigate('/account')
   }
 
   const valueHandler = (value) => {
@@ -67,7 +74,7 @@ const Login = () => {
   };
 
   return (
-    <MainScreenWrapper>
+    <>
       <LoginPanel
         focusHandler={focusHandler}
         dniRef={dniRef}
@@ -75,7 +82,7 @@ const Login = () => {
         inputFocus={inputFocus}
       />
       <NumberPanel valueHandler={valueHandler} validInputs={validInputs} loginHandler={loginHandler}/>
-    </MainScreenWrapper>
+    </>
   );
 };
 

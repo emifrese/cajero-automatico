@@ -7,7 +7,7 @@ const NumberPanel = ({ valueHandler, validInputs, loginHandler }) => {
   for (let i = 1; i < 13; i++) {
     if (i < 10) {
       displayButtons.push(
-        <Button key={i} text={i} value={i} valueHandler={valueHandler} />
+        <Button key={i} text={i} value={i} type={'number'} valueHandler={valueHandler} />
       );
     } else {
       let text;
@@ -29,7 +29,7 @@ const NumberPanel = ({ valueHandler, validInputs, loginHandler }) => {
           click = loginHandler;
           if (!validInputs[0] || !validInputs[1]) {
             disabled = true;
-            disabledClass = "bg-slate-400 hover:bg-slate-400"
+            disabledClass = "w-1/4 text-white text-xl bg-slate-400 hover:bg-slate-400"
           }
           break;
       }
@@ -37,6 +37,7 @@ const NumberPanel = ({ valueHandler, validInputs, loginHandler }) => {
         <Button
           key={i}
           text={text}
+          type={'number'}
           value={value}
           valueHandler={click}
           disabled={disabled}
