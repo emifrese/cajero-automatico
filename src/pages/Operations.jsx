@@ -8,18 +8,19 @@ import useAuth from '../hooks/useAuth'
 
 const Operations = () => {
     const navigate = useNavigate()
-    const {auth, setAuth} = useAuth();
+    const {auth, setAuth, tryUpdateJSON} = useAuth();
 
     useEffect(() => {
-        let timer = setTimeout(() => {
-            setAuth({})
-            localStorage.removeItem('account')
-            navigate('/')
-          }, 20000);
+        // Leave it like this to work without having to log again
+        // let timer = setTimeout(() => {
+        //     setAuth({})
+        //     localStorage.removeItem('account')
+        //     navigate('/')
+        //   }, 20000);
       
-          return () => {
-            clearTimeout(timer)
-          };
+        //   return () => {
+        //     clearTimeout(timer)
+        //   };
     }, [])
 
   return (
@@ -30,6 +31,7 @@ const Operations = () => {
         <Button text={"Cancelar"}
         type={"footer"}
         valueHandler={() => {
+            setAuth({})
             localStorage.removeItem('account')
             navigate("/")}}/>
     </Footer>

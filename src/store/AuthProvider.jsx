@@ -5,6 +5,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [cargando, setCargando] = useState(true);
   const [auth, setAuth] = useState({});
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const autenticarUsuario = async () => {
@@ -30,12 +31,30 @@ const AuthProvider = ({ children }) => {
     autenticarUsuario()
   }, []);
 
+  
+  const modalHandler = () => {
+    setModal(prevState => !prevState)
+  }
+  
+    const extractMoney = async (amount) => {
+      console.log(auth.info.amount)
+      console.log(amount)
+      if(amount > auth.info.amount){
+       setModal(prevState => !prevState)
+      } else {
+        console.log(`Extrajo $${amount}. Ahora su saldo es $${auth.info.amount - amount}`)
+      }
+    }
+
   return (
     <AuthContext.Provider 
         value={{
             auth, 
             setAuth,
-            cargando
+            cargando,
+            extractMoney,
+            modal,
+            modalHandler
         }}
     >
         {children}

@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ExtractionsPanel = () => {
+const ExtractionsPanel = ({optionHandler}) => {
 
-    const [option, setOption] = useState()
-
-    console.log(option)
 
     return (
     <div className="w-2/3 flex border-2 border-blue-400">
       <div className="w-1/2 p-10 flex flex-wrap border-2 border-blue-200">
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(parseInt(e.target.value))}>
           <input
             className="w-1/12"
             type="radio"
@@ -18,7 +15,7 @@ const ExtractionsPanel = () => {
           />
           $500
         </label>
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(parseInt(e.target.value))}>
           <input
             className="w-1/12"
             type="radio"
@@ -27,7 +24,7 @@ const ExtractionsPanel = () => {
           />
           $2.000
         </label>
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(parseInt(e.target.value))}>
           <input
             className="w-1/12"
             type="radio"
@@ -38,7 +35,7 @@ const ExtractionsPanel = () => {
         </label>
       </div>
       <div className="w-1/2 p-10 flex flex-wrap border-2 border-blue-200">
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(parseInt(e.target.value))}>
           <input
             className="w-1/12"
             type="radio"
@@ -47,7 +44,7 @@ const ExtractionsPanel = () => {
           />
           $5.000
         </label>
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(parseInt(e.target.value))}>
           <input
             className="w-1/12"
             type="radio"
@@ -56,7 +53,7 @@ const ExtractionsPanel = () => {
           />
           $6.000
         </label>
-        <label className="w-full my-4 text-2xl text-left" onClick={(e) => setOption(e.target.value)}>
+        <label className="w-full my-4 text-2xl text-left" onClick={(e) => optionHandler(e.target.value)}>
           <input
             className="w-1/12"
             type="radio"

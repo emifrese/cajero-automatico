@@ -9,9 +9,9 @@ import useAuth from "../hooks/useAuth";
 const Login = () => {
   const [inputFocus, setInputFocus] = useState();
   const [validInputs, setValidInputs] = useState([false, false]);
-  const {setAuth} = useAuth();
+  const { setAuth } = useAuth();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dniRef = useRef("");
   const claveRef = useRef("");
@@ -23,16 +23,19 @@ const Login = () => {
     }, 20000);
 
     return () => {
-      clearTimeout(timer)
+      clearTimeout(timer);
     };
   }, [dniRef.current.value, claveRef.current.value, inputFocus]);
 
-  const loginHandler =  async () => {
-    const [account] = await checkClient(dniRef.current.value, claveRef.current.value)
-    
+  const loginHandler = async () => {
+    const [account] = await checkClient(
+      dniRef.current.value,
+      claveRef.current.value
+    );
+
     setAuth(account);
-    navigate('/account')
-  }
+    navigate("/account");
+  };
 
   const valueHandler = (value) => {
     if (inputFocus === "DNI") {
@@ -73,6 +76,7 @@ const Login = () => {
     setInputFocus(focus);
   };
 
+
   return (
     <>
       <LoginPanel
@@ -81,7 +85,11 @@ const Login = () => {
         claveRef={claveRef}
         inputFocus={inputFocus}
       />
-      <NumberPanel valueHandler={valueHandler} validInputs={validInputs} loginHandler={loginHandler}/>
+      <NumberPanel
+        valueHandler={valueHandler}
+        validInputs={validInputs}
+        loginHandler={loginHandler}
+      />
     </>
   );
 };
